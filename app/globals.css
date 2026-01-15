@@ -15,7 +15,6 @@ body {
     letter-spacing: 0.05em;
 }
 
-/* Effet de grain intensif style moodboard */
 .noise-overlay {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.5' numOctaves='6' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     background-size: 200px 200px;
@@ -38,13 +37,6 @@ body {
     animation: scanlines 8s linear infinite;
 }
 
-/* Effet de blur/motion sur le logo central */
-.blur-text {
-    filter: blur(0.3px);
-    animation: subtle-blur 4s ease-in-out infinite;
-}
-
-/* Effet de glitch sur le texte */
 .glitch {
     position: relative;
     animation: glitch-skew 2s infinite;
@@ -72,11 +64,6 @@ body {
     text-shadow: -2px 0 #00fff9;
     clip: rect(85px, 550px, 140px, 0);
     animation: glitch-anim 2.5s infinite linear alternate-reverse;
-}
-
-/* Distorsion comme dans le moodboard */
-.distortion {
-    animation: distort 5s ease-in-out infinite;
 }
 
 @keyframes grain {
@@ -119,16 +106,6 @@ body {
     }
     100% {
         transform: translateY(10px);
-    }
-}
-
-@keyframes subtle-blur {
-    0%,
-    100% {
-        filter: blur(0.3px);
-    }
-    50% {
-        filter: blur(0.8px);
     }
 }
 
@@ -222,23 +199,15 @@ body {
     }
 }
 
-@keyframes distort {
-    0%,
-    100% {
-        transform: scale(1) translateZ(0);
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
     }
-    25% {
-        transform: scale(1.01, 0.99) translateZ(0);
-    }
-    50% {
-        transform: scale(0.99, 1.01) translateZ(0);
-    }
-    75% {
-        transform: scale(1.01, 0.99) translateZ(0);
+    to {
+        transform: rotate(360deg);
     }
 }
 
-/* Gradient subtil style PARTYNEXTDOOR */
 .partynextdoor-gradient {
     background: radial-gradient(
             ellipse at top left,
