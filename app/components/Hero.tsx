@@ -3,7 +3,6 @@
 import { gsap } from "gsap";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-import { NOISE_SVG, NOISE_SIZE, NOISE_OPACITY } from "../utils/constants";
 
 export default function Hero() {
     const boxRef = useRef<HTMLDivElement>(null);
@@ -52,10 +51,8 @@ export default function Hero() {
     }, []);
 
     return (
-        <section className="fixed inset-0 w-screen h-screen bg-black flex items-center justify-center overflow-hidden z-10">
-            <div className="partynextdoor-gradient absolute inset-0 w-full h-full pointer-events-none z-0"></div>
-
-            <div className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-20">
+        <section className="fixed inset-0 w-screen h-screen bg-[#1a1a1a] flex items-center justify-center overflow-hidden z-10">
+            <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
                 <Image
                     src="/image.png"
                     alt="Background"
@@ -63,21 +60,10 @@ export default function Hero() {
                     className="object-cover"
                     priority
                 />
+                <div className="absolute inset-0 bg-black/70" />
             </div>
 
-            <div
-                className="absolute inset-0 w-full h-full pointer-events-none z-0"
-                style={{
-                    backgroundImage: NOISE_SVG,
-                    backgroundSize: NOISE_SIZE,
-                    opacity: NOISE_OPACITY,
-                    mixBlendMode: "overlay",
-                }}
-            />
-
-            <div className="noise-overlay absolute inset-0 w-full h-full pointer-events-none z-1"></div>
-
-            <div className="absolute top-0 left-0 z-2 p-4 md:p-6">
+            <div className="absolute top-0 left-0 z-20 p-4 md:p-6">
                 <Image
                     src="/logo.png"
                     alt="PARTYNEXTDOOR Logo"
@@ -88,47 +74,56 @@ export default function Hero() {
                 />
             </div>
 
-            <nav className="absolute right-0 top-0 z-2 pr-6 md:pr-8 pt-4 md:pt-6">
-                <ul className="flex flex-row gap-4 md:gap-6 lg:gap-8">
+            <nav className="absolute right-0 top-0 z-20 pr-6 md:pr-8 pt-4 md:pt-6">
+                <ul className="flex flex-row gap-6 md:gap-8 lg:gap-10">
                     <li>
                         <a
                             href="#about"
-                            className="text-white text-sm md:text-base font-rubik-mono font-bold tracking-wider uppercase hover:opacity-80 transition-opacity cursor-pointer"
+                            className="text-white text-xs md:text-sm font-dm font-medium tracking-widest uppercase hover:opacity-80 transition-opacity cursor-pointer"
                         >
-                            ABOUT
+                            About
                         </a>
                     </li>
                     <li>
                         <a
                             href="#discography"
-                            className="text-white text-sm md:text-base font-rubik-mono font-bold tracking-wider uppercase hover:opacity-80 transition-opacity cursor-pointer"
+                            className="text-white text-xs md:text-sm font-dm font-medium tracking-widest uppercase hover:opacity-80 transition-opacity cursor-pointer"
                         >
-                            DISCOGRAPHY
+                            Discography
                         </a>
                     </li>
                     <li>
                         <a
                             href="#cover-generator"
-                            className="text-white text-sm md:text-base font-rubik-mono font-bold tracking-wider uppercase hover:opacity-80 transition-opacity cursor-pointer"
+                            className="text-white text-xs md:text-sm font-dm font-medium tracking-widest uppercase hover:opacity-80 transition-opacity cursor-pointer"
                         >
-                            COVER GENERATOR
+                            Cover Generator
                         </a>
                     </li>
                 </ul>
             </nav>
 
-            <div className="relative z-2 flex items-center justify-center w-full px-8 md:px-16">
-                <div
-                    ref={boxRef}
-                    className="bg-white px-4 py-2 md:px-8 md:py-4 inline-block shadow-[0_0_50px_rgba(255,255,255,0.2)] origin-center"
-                >
-                    <h1
-                        ref={textRef}
-                        className="font-rubik-mono font-extrabold text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-black tracking-wider uppercase leading-none glitch whitespace-nowrap"
-                        data-text="PARTYNEXTDOOR"
+            <div className="relative z-10 flex items-center justify-center w-full">
+                <div ref={boxRef} className="relative origin-center">
+                    <div
+                        className="relative"
+                        style={{
+                            backgroundColor: "white",
+                        }}
                     >
-                        PARTYNEXTDOOR
-                    </h1>
+                        <h1
+                            ref={textRef}
+                            className="font-rubik-mono text-5xl md:text-6xl lg:text-7xl xl:text-8xl tracking-wider uppercase leading-none whitespace-nowrap px-4 py-2 md:px-6 md:py-3"
+                            style={{
+                                background: "url('/image.png') center/cover",
+                                WebkitBackgroundClip: "text",
+                                backgroundClip: "text",
+                                color: "transparent",
+                            }}
+                        >
+                            PARTYNEXTDOOR
+                        </h1>
+                    </div>
                 </div>
             </div>
         </section>

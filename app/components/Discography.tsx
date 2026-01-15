@@ -4,7 +4,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
 import { yearSections } from "../data/albums";
-import { NOISE_SVG, NOISE_SIZE, NOISE_OPACITY } from "../utils/constants";
 import FlipCard from "./FlipCard";
 
 if (typeof window !== "undefined") {
@@ -114,7 +113,7 @@ export default function Discography() {
         <section
             id="discography"
             ref={sectionRef}
-            className="relative w-screen min-h-screen bg-black overflow-hidden z-20"
+            className="relative w-screen min-h-screen bg-[var(--bg-deep)] overflow-hidden z-20"
             style={{ marginTop: "100vh" }}
         >
             <div
@@ -128,20 +127,8 @@ export default function Discography() {
                 }}
             />
 
-            <div
-                className="absolute inset-0 w-full h-full pointer-events-none z-0"
-                style={{
-                    backgroundImage: NOISE_SVG,
-                    backgroundSize: NOISE_SIZE,
-                    opacity: NOISE_OPACITY,
-                    mixBlendMode: "overlay",
-                }}
-            />
-
-            <div className="noise-overlay absolute inset-0 w-full h-full pointer-events-none z-1"></div>
-
-            <div className="relative z-2 container mx-auto px-6 md:px-12 lg:px-16 py-20 md:py-32">
-                <h2 className="font-rubik-mono font-extrabold text-2xl md:text-3xl text-white tracking-wider uppercase mb-12 md:mb-16 text-center">
+            <div className="relative z-10 container mx-auto px-6 md:px-12 lg:px-16 py-20 md:py-32">
+                <h2 className="font-syne text-2xl md:text-3xl text-white tracking-tighter mb-12 md:mb-16 text-center">
                     DISCOGRAPHY
                 </h2>
 
@@ -156,7 +143,7 @@ export default function Discography() {
                                 <div className="w-32 md:w-48 lg:w-56 shrink-0 relative">
                                     <div className="date-container">
                                         <span
-                                            className="font-rubik-mono text-4xl md:text-5xl lg:text-6xl font-bold text-white block leading-none"
+                                            className="font-space-mono text-4xl md:text-5xl lg:text-6xl font-bold text-white block leading-none"
                                             style={{
                                                 writingMode: "sideways-lr",
                                                 textOrientation: "mixed",
@@ -182,10 +169,10 @@ export default function Discography() {
                                             key={album.id}
                                             className="content-item mb-8"
                                         >
-                                            <h3 className="font-rubik-mono text-lg md:text-xl lg:text-2xl text-white/90 uppercase tracking-wider mb-3">
+                                            <h3 className="font-syne text-lg md:text-xl lg:text-2xl text-white/90 tracking-tight mb-3">
                                                 {album.title}
                                             </h3>
-                                            <p className="font-rubik-mono text-xs md:text-sm text-white/70 leading-relaxed mb-6 max-w-xl">
+                                            <p className="font-dm text-xs md:text-sm text-[var(--text-muted)] leading-relaxed mb-6 max-w-xl">
                                                 {album.description}
                                             </p>
                                             <FlipCard album={album} />
