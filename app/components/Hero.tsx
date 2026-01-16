@@ -133,14 +133,6 @@ export default function Hero() {
                 <ul className="flex flex-row gap-6 md:gap-8 lg:gap-10">
                     <li>
                         <a
-                            href="#about"
-                            className="text-white text-xs md:text-sm font-dm font-medium tracking-widest uppercase hover:opacity-80 transition-opacity cursor-pointer"
-                        >
-                            About
-                        </a>
-                    </li>
-                    <li>
-                        <a
                             href="#discography"
                             className="text-white text-xs md:text-sm font-dm font-medium tracking-widest uppercase hover:opacity-80 transition-opacity cursor-pointer"
                         >
