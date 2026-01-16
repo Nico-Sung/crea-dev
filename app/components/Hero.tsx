@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { type MouseEvent, useEffect, useRef, useState } from "react";
 import { useLoading } from "../context/LoadingContext";
 
 export default function Hero() {
@@ -9,6 +9,54 @@ export default function Hero() {
     const [textReady, setTextReady] = useState(false);
     const [letterSpacing, setLetterSpacing] = useState(0);
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const scrollAnimationRef = useRef<number | null>(null);
+
+    const smoothScrollTo = (targetId: string) => {
+        const targetElement = document.getElementById(targetId);
+        if (!targetElement) return;
+
+        if (scrollAnimationRef.current) {
+            cancelAnimationFrame(scrollAnimationRef.current);
+            scrollAnimationRef.current = null;
+        }
+
+        const startY = window.scrollY;
+        const targetY =
+            targetElement.getBoundingClientRect().top + window.scrollY;
+        const distance = targetY - startY;
+        const duration = 1400;
+        const startTime = performance.now();
+
+        const easeInOutCubic = (progress: number) => {
+            return progress < 0.5
+                ? 4 * progress * progress * progress
+                : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+        };
+
+        const animateScroll = (currentTime: number) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easedProgress = easeInOutCubic(progress);
+            window.scrollTo(0, startY + distance * easedProgress);
+
+            if (progress < 1) {
+                scrollAnimationRef.current =
+                    requestAnimationFrame(animateScroll);
+            } else {
+                scrollAnimationRef.current = null;
+            }
+        };
+
+        scrollAnimationRef.current = requestAnimationFrame(animateScroll);
+    };
+
+    const handleNavigation = (
+        event: MouseEvent<HTMLAnchorElement>,
+        targetId: string
+    ) => {
+        event.preventDefault();
+        smoothScrollTo(targetId);
+    };
 
     useEffect(() => {
         if (!isLoaded) return;
@@ -134,6 +182,9 @@ export default function Hero() {
                     <li>
                         <a
                             href="#discography"
+                            onClick={(event) =>
+                                handleNavigation(event, "discography")
+                            }
                             className="text-white text-xs md:text-sm font-dm font-medium tracking-widest uppercase hover:opacity-80 transition-opacity cursor-pointer"
                         >
                             Discography
@@ -142,6 +193,9 @@ export default function Hero() {
                     <li>
                         <a
                             href="#cover-generator"
+                            onClick={(event) =>
+                                handleNavigation(event, "cover-generator")
+                            }
                             className="text-white text-xs md:text-sm font-dm font-medium tracking-widest uppercase hover:opacity-80 transition-opacity cursor-pointer"
                         >
                             Cover Generator
