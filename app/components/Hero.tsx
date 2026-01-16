@@ -6,65 +6,69 @@ import { useEffect, useRef } from "react";
 import { useLoading } from "../context/LoadingContext";
 
 export default function Hero() {
-    const boxRef = useRef<HTMLDivElement>(null);
     const textRef = useRef<HTMLHeadingElement>(null);
     const { isLoaded } = useLoading();
 
     useEffect(() => {
+        if (!isLoaded || !textRef.current) return;
+
+        gsap.fromTo(
+            textRef.current,
+            {
+                opacity: 0,
+                y: 50,
+            },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: "power3.out",
+                delay: 0.2,
+            }
+        );
+    }, [isLoaded]);
+
+    useEffect(() => {
+        if (!isLoaded || !textRef.current) return;
+
+        const handleScroll = () => {
+            if (!textRef.current) return;
+            const maxSpacing = 1;
+            const progress = Math.min(
+                window.scrollY / window.innerHeight,
+                1
+            );
+            const targetSpacing = progress * maxSpacing;
+
+            gsap.to(textRef.current, {
+                letterSpacing: `${targetSpacing}em`,
+                duration: 0.4,
+                ease: "power2.out",
+                overwrite: "auto",
+            });
+        };
+
+        handleScroll();
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [isLoaded]);
+
+    useEffect(() => {
         if (!isLoaded) return;
-
-        const timeline = gsap.timeline({ delay: 0.2 });
-
-        if (boxRef.current && textRef.current) {
-            timeline
-                .fromTo(
-                    boxRef.current,
-                    {
-                        scaleX: 0,
-                        scaleY: 0.1,
-                    },
-                    {
-                        scaleX: 1,
-                        scaleY: 0.1,
-                        duration: 0.6,
-                        ease: "power2.inOut",
-                    }
-                )
-                .to(boxRef.current, {
-                    scaleY: 1,
-                    duration: 0.5,
-                    ease: "power2.out",
-                })
-                .fromTo(
-                    textRef.current,
-                    {
-                        opacity: 0,
-                        scale: 0.9,
-                        filter: "blur(8px)",
-                    },
-                    {
-                        opacity: 1,
-                        scale: 1,
-                        filter: "blur(0px)",
-                        duration: 0.8,
-                        ease: "power3.out",
-                    },
-                    "-=0.3"
-                );
-        }
+        window.scrollTo(0, 0);
     }, [isLoaded]);
 
     return (
-        <section className="fixed inset-0 w-screen h-screen bg-[#1a1a1a] flex items-center justify-center overflow-hidden z-10">
-            <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
+        <section className="fixed inset-0 w-screen h-screen overflow-hidden bg-black z-10">
+            <div className="absolute inset-0 w-full h-full">
                 <Image
-                    src="/image.png"
-                    alt="Background"
+                    src="/hero.png"
+                    alt="PARTYNEXTDOOR landing background"
                     fill
                     className="object-cover"
                     priority
                 />
-                <div className="absolute inset-0 bg-black/70" />
+                <div className="absolute inset-0 bg-black/40" />
             </div>
 
             <div className="absolute top-0 left-0 z-20 p-4 md:p-6">
@@ -107,33 +111,14 @@ export default function Hero() {
                 </ul>
             </nav>
 
-            <div className="relative z-10 flex items-center justify-center w-full">
-                <div
-                    ref={boxRef}
-                    className="relative origin-center"
-                    style={{ transform: "scaleX(0) scaleY(0.1)" }}
+            <div className="relative z-10 flex items-center justify-center w-full h-full px-6 text-center">
+                <h1
+                    ref={textRef}
+                    className="font-rubik-mono font-black text-5xl md:text-7xl lg:text-9xl xl:text-[9rem] tracking-[0em] uppercase text-[#c61a1a] drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)]"
+                    style={{ opacity: 0, letterSpacing: "0em" }}
                 >
-                    <div
-                        className="relative"
-                        style={{
-                            backgroundColor: "white",
-                        }}
-                    >
-                        <h1
-                            ref={textRef}
-                            className="font-rubik-mono text-5xl md:text-6xl lg:text-7xl xl:text-8xl tracking-wider uppercase leading-none whitespace-nowrap px-4 py-2 md:px-6 md:py-3"
-                            style={{
-                                background: "url('/image.png') center/cover",
-                                WebkitBackgroundClip: "text",
-                                backgroundClip: "text",
-                                color: "transparent",
-                                opacity: 0,
-                            }}
-                        >
-                            PARTYNEXTDOOR
-                        </h1>
-                    </div>
-                </div>
+                    PARTYNEXTDOOR
+                </h1>
             </div>
         </section>
     );

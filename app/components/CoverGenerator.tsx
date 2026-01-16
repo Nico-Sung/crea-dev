@@ -87,7 +87,7 @@ export default function CoverGenerator() {
                 <div
                     className="absolute inset-0 opacity-30"
                     style={{
-                        backgroundImage: "url('/image.png')",
+                        backgroundImage: "url('/hero.png')",
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                         filter: "grayscale(1)",
