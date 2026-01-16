@@ -183,7 +183,7 @@ export default function Hero() {
                     className="marker-text mt-4 md:mt-5"
                     style={{ transform: "rotate(-5deg)" }}
                 >
-                    2026-04-16
+                    2024-10-31
                 </div>
             </div>
 
