@@ -186,15 +186,15 @@ export default function Hero() {
                 />
             </div>
 
-            <nav className="absolute right-0 top-0 z-20 pr-6 md:pr-8 pt-4 md:pt-6">
-                <ul className="flex flex-row gap-6 md:gap-8 lg:gap-10">
+            <nav className="absolute right-0 top-0 z-20 pr-3 sm:pr-6 md:pr-8 pt-3 sm:pt-4 md:pt-6">
+                <ul className="flex flex-row gap-3 sm:gap-5 md:gap-8 lg:gap-10">
                     <li>
                         <a
                             href="#discography"
                             onClick={(event) =>
                                 handleNavigation(event, "discography")
                             }
-                            className="text-white text-[0.65rem] md:text-xs font-navcaps hover:opacity-80 transition-opacity cursor-pointer"
+                            className="text-white text-[0.5rem] sm:text-[0.65rem] md:text-xs font-navcaps hover:opacity-80 transition-opacity cursor-pointer"
                         >
                             Discography
                         </a>
@@ -205,7 +205,7 @@ export default function Hero() {
                             onClick={(event) =>
                                 handleNavigation(event, "cover-generator")
                             }
-                            className="text-white text-[0.65rem] md:text-xs font-navcaps hover:opacity-80 transition-opacity cursor-pointer"
+                            className="text-white text-[0.5rem] sm:text-[0.65rem] md:text-xs font-navcaps hover:opacity-80 transition-opacity cursor-pointer"
                         >
                             Cover Generator
                         </a>
