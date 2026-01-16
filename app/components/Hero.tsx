@@ -29,19 +29,18 @@ export default function Hero() {
         const targetY =
             targetElement.getBoundingClientRect().top + window.scrollY;
         const distance = targetY - startY;
-        const duration = 1400;
+        const duration = 1800;
         const startTime = performance.now();
 
-        const easeInOutCubic = (progress: number) => {
-            return progress < 0.5
-                ? 4 * progress * progress * progress
-                : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+        // Easing avec fort ralenti à la fin (easeOutQuint)
+        const easeOutQuint = (progress: number) => {
+            return 1 - Math.pow(1 - progress, 5);
         };
 
         const animateScroll = (currentTime: number) => {
             const elapsed = currentTime - startTime;
             const progress = Math.min(elapsed / duration, 1);
-            const easedProgress = easeInOutCubic(progress);
+            const easedProgress = easeOutQuint(progress);
             window.scrollTo(0, startY + distance * easedProgress);
 
             if (progress < 1) {
@@ -57,7 +56,7 @@ export default function Hero() {
 
     const handleNavigation = (
         event: MouseEvent<HTMLAnchorElement>,
-        targetId: string
+        targetId: string,
     ) => {
         event.preventDefault();
         smoothScrollTo(targetId);
