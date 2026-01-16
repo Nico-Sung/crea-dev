@@ -174,23 +174,21 @@ export const useCoverGenerator = (): UseCoverGeneratorReturn => {
 
             ctx.drawImage(canvasRef.current, 0, 0, size, size);
 
-            if (userImage) {
-                const img = new Image();
-                img.crossOrigin = "anonymous";
-                await new Promise<void>((resolve, reject) => {
-                    img.onload = () => resolve();
-                    img.onerror = () => reject();
-                    img.src = userImage;
-                });
+            const img = new Image();
+            img.crossOrigin = "anonymous";
+            await new Promise<void>((resolve, reject) => {
+                img.onload = () => resolve();
+                img.onerror = () => reject();
+                img.src = "/album4.png";
+            });
 
-                ctx.globalCompositeOperation = blendMode;
-                ctx.globalAlpha = imageOpacity / 100;
-                ctx.filter = `grayscale(100%) contrast(120%) brightness(75%)`;
-                ctx.drawImage(img, 0, 0, size, size);
-                ctx.globalCompositeOperation = "source-over";
-                ctx.globalAlpha = 1;
-                ctx.filter = "none";
-            }
+            ctx.globalCompositeOperation = blendMode;
+            ctx.globalAlpha = imageOpacity / 100;
+            ctx.filter = `grayscale(100%) contrast(120%) brightness(75%) blur(${globalBlur}px)`;
+            ctx.drawImage(img, 0, 0, size, size);
+            ctx.globalCompositeOperation = "source-over";
+            ctx.globalAlpha = 1;
+            ctx.filter = "none";
 
             if (noiseOpacity > 0) {
                 ctx.globalAlpha = noiseOpacity / 100;
