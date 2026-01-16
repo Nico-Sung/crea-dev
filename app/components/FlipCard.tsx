@@ -104,7 +104,7 @@ export default function FlipCard({ album }: FlipCardProps) {
                     }}
                 >
                     <div className="absolute inset-0 p-6 flex flex-col">
-                        <h4 className="font-syne text-base md:text-lg text-white tracking-tight mb-1">
+                        <h4 className="font-navcaps text-xs md:text-sm text-white mb-2 tracking-[0.3em]">
                             {album.title}
                         </h4>
                         <span className="font-space-mono text-xs text-[var(--text-muted)] mb-4">

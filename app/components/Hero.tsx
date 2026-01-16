@@ -185,7 +185,7 @@ export default function Hero() {
                             onClick={(event) =>
                                 handleNavigation(event, "discography")
                             }
-                            className="text-white text-xs md:text-sm font-dm font-medium tracking-widest uppercase hover:opacity-80 transition-opacity cursor-pointer"
+                            className="text-white text-[0.65rem] md:text-xs font-navcaps hover:opacity-80 transition-opacity cursor-pointer"
                         >
                             Discography
                         </a>
@@ -196,7 +196,7 @@ export default function Hero() {
                             onClick={(event) =>
                                 handleNavigation(event, "cover-generator")
                             }
-                            className="text-white text-xs md:text-sm font-dm font-medium tracking-widest uppercase hover:opacity-80 transition-opacity cursor-pointer"
+                            className="text-white text-[0.65rem] md:text-xs font-navcaps hover:opacity-80 transition-opacity cursor-pointer"
                         >
                             Cover Generator
                         </a>

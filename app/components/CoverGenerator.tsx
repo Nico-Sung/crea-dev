@@ -122,7 +122,9 @@ export default function CoverGenerator() {
                     <p className="text-xs uppercase tracking-[0.4em] text-white/60">
                         PARTYNEXTDOOR • simple cover generator
                     </p>
-                    <h2 className="text-4xl font-syne">Forge a cover</h2>
+                    <h2 className="font-navcaps text-3xl tracking-[0.25em]">
+                        Cover Generator
+                    </h2>
                     <p className="text-white/70 text-base">
                         Minimal PARTYNEXTDOOR playground. Choisis un mood gradient, un motif qui rappelle ses visuels (halo, signal bars, diamond) et baptise ta cover avec les vibes du crew OVO.
                     </p>
@@ -160,7 +162,7 @@ export default function CoverGenerator() {
                                 <p className="text-xs uppercase tracking-[0.3em] text-white/60">
                                     2025 · PARTYNEXTDOOR
                                 </p>
-                                <h3 className="text-3xl font-syne leading-tight">
+                                <h3 className="font-navcaps text-2xl tracking-[0.25em] leading-relaxed">
                                     {title}
                                 </h3>
                                 <p
