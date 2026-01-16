@@ -6,8 +6,8 @@ Site web immersif dédié au nouvel album 2024 de PARTYNEXTDOOR, développé ave
 
 ## Prérequis
 
--   Node.js ≥ 18
--   pnpm (recommandé). Adaptez les commandes si vous préférez npm, yarn ou bun.
+- Node.js ≥ 18
+- pnpm (recommandé). Adaptez les commandes si vous préférez npm, yarn ou bun.
 
 ## Installation & développement
 

@@ -10,6 +10,7 @@ export default function LoadingScreen() {
     const [isExiting, setIsExiting] = useState(false);
     const [showText, setShowText] = useState(false);
     const [showImage, setShowImage] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
     const { setIsLoaded } = useLoading();
 
     useEffect(() => {
@@ -50,6 +51,15 @@ export default function LoadingScreen() {
         }
     }, [progress, setIsLoaded]);
 
+    useEffect(() => {
+        const mediaQuery = window.matchMedia("(max-width: 639px)");
+        const update = () => setIsMobile(mediaQuery.matches);
+
+        update();
+        mediaQuery.addEventListener("change", update);
+        return () => mediaQuery.removeEventListener("change", update);
+    }, []);
+
     if (!isVisible) return null;
 
     return (
@@ -78,7 +88,7 @@ export default function LoadingScreen() {
             />
 
             <div
-                className="absolute inset-0 flex items-center justify-center px-4 sm:px-6"
+                className="absolute inset-0 flex items-center justify-center"
                 style={{
                     opacity: isExiting ? 0 : 1,
                     transform: isExiting
@@ -89,11 +99,11 @@ export default function LoadingScreen() {
                 }}
             >
                 <div
-                    className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 md:gap-8"
+                    className="flex flex-col sm:flex-row flex-wrap sm:flex-nowrap items-center justify-center gap-4 sm:gap-6 md:gap-8 px-4 sm:px-0"
                     style={{
-                        transform: showImage
-                            ? "translateX(0) sm:translateX(-50px)"
-                            : "translateX(0)",
+                        transform: `translateX(${
+                            isMobile ? 0 : showImage ? -50 : 0
+                        }px) translateY(${isMobile ? (showText ? 0 : -28) : 0}px)`,
                         transition:
                             "transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
                     }}
@@ -101,9 +111,11 @@ export default function LoadingScreen() {
                     <div
                         className="relative shrink-0"
                         style={{
-                            transform: showText
-                                ? "translateX(0) translateY(0)"
-                                : "translateX(0) translateY(50px)",
+                            transform: isMobile
+                                ? `translateY(${showText ? 0 : -18}px)`
+                                : showText
+                                  ? "translateX(0)"
+                                  : "translateX(100px)",
                             transition:
                                 "transform 1s cubic-bezier(0.4, 0, 0.2, 1)",
                         }}
@@ -113,22 +125,22 @@ export default function LoadingScreen() {
                             alt="PARTYNEXTDOOR Logo"
                             width={180}
                             height={54}
-                            className="w-auto h-10 sm:h-12 md:h-16"
+                            className="w-auto h-12 sm:h-14 md:h-16"
                             priority
                         />
                     </div>
 
                     <div
-                        className="flex flex-col gap-1.5 sm:gap-2 overflow-hidden justify-center items-center sm:items-start"
+                        className="flex flex-col gap-2 overflow-hidden justify-center items-center text-center sm:items-start sm:text-left"
                         style={{
                             clipPath: showText
                                 ? "inset(0 0 0 0)"
-                                : "inset(0 0 100% 0)",
+                                : "inset(0 100% 0 0)",
                             transition:
                                 "clip-path 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s",
                         }}
                     >
-                        <p className="font-space-mono text-[8px] sm:text-[10px] md:text-xs text-white/70 uppercase tracking-wider leading-relaxed text-center sm:text-left italic">
+                        <p className="font-space-mono text-[9px] sm:text-[10px] md:text-xs text-white/70 uppercase tracking-wider leading-relaxed whitespace-normal sm:whitespace-nowrap italic">
                             &quot;I know myself, I&apos;m learning myself.
                             <br />
                             I&apos;m growing, I&apos;m maturing.&quot;
@@ -136,11 +148,11 @@ export default function LoadingScreen() {
                                 — PartyNextDoor
                             </span>
                         </p>
-                        <div className="flex items-center gap-4 sm:gap-8 mt-1">
-                            <span className="font-space-mono text-[8px] sm:text-[10px] md:text-xs text-white/50 tracking-wider">
+                        <div className="flex items-center gap-6 sm:gap-8 mt-1">
+                            <span className="font-space-mono text-[10px] md:text-xs text-white/50 tracking-wider">
                                 LOADING...
                             </span>
-                            <span className="font-space-mono text-[8px] sm:text-[10px] md:text-xs text-white/50 tracking-wider tabular-nums">
+                            <span className="font-space-mono text-[10px] md:text-xs text-white/50 tracking-wider tabular-nums">
                                 {String(
                                     Math.min(Math.round(progress), 100),
                                 ).padStart(3, "0")}
@@ -150,7 +162,7 @@ export default function LoadingScreen() {
                     </div>
 
                     <div
-                        className="hidden sm:block overflow-hidden shrink-0"
+                        className="overflow-hidden shrink-0"
                         style={{
                             clipPath: showImage
                                 ? "inset(0 0 0 0)"
@@ -164,7 +176,7 @@ export default function LoadingScreen() {
                             alt="sign"
                             width={100}
                             height={70}
-                            className="w-auto h-14 md:h-20 opacity-60"
+                            className="w-auto h-12 sm:h-16 md:h-20 opacity-60"
                             priority
                         />
                     </div>
