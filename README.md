@@ -19,7 +19,7 @@ pnpm install
 pnpm dev
 ```
 
-Rendez-vous sur [http://localhost:3000](http://localhost:3000) pour voir le site. La page principale est rendue depuis `app/page.tsx` et hot-reload automatiquement.
+Rendez-vous sur [http://localhost:3000](http://localhost:3000) ou bien <https://party-next-door-cover.vercel.app/> pour voir le site. La page principale est rendue depuis `app/page.tsx` et hot-reload automatiquement.
 
 ## Scripts utiles
 
