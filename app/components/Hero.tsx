@@ -216,6 +216,34 @@ export default function Hero() {
                     PARTYNEXTDOOR
                 </h1>
             </div>
+
+            <a
+                href="#cover-generator"
+                aria-label="Aller au générateur de cover"
+                onClick={(event) => handleNavigation(event, "cover-generator")}
+                className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-4 text-white text-xs md:text-sm font-medium tracking-wide"
+            >
+                <span className="px-4 py-2 rounded-xl border border-white/10 bg-white/[0.03] transform transition-all backdrop-blur-xl">
+                    <span className="flex flex-col items-center text-center leading-tight text-[0.55rem] md:text-xs uppercase tracking-[0.08em] text-white/90 font-navcaps font-semibold">
+                        <span>Cliquez ici pour</span>
+                        <span>faire votre propre cover !</span>
+                    </span>
+                </span>
+                <span className="hero-arrow">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        className="w-5 h-5 md:w-6 md:h-6 text-white/90 drop-shadow-[0_5px_15px_rgba(0,0,0,0.7)]"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                    >
+                        <path d="M12 5v14m0 0-5-5m5 5 5-5" />
+                    </svg>
+                </span>
+            </a>
         </section>
     );
 }

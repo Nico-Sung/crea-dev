@@ -299,3 +299,22 @@ h6 {
     background: #333;
     border-radius: 2px;
 }
+
+.hero-arrow {
+    animation: heroArrow 2.4s ease-in-out infinite;
+}
+
+@keyframes heroArrow {
+    0% {
+        transform: translateY(-6px);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(6px);
+        opacity: 0.2;
+    }
+    100% {
+        transform: translateY(-6px);
+        opacity: 1;
+    }
+}
