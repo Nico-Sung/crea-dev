@@ -1,7 +1,5 @@
 # PARTYNEXTDOOR — Cover Generator
 
-Site web immersif dédié au nouvel album 2024 de PARTYNEXTDOOR, développé avec Next.js (App Router). Le site propose une landing page dynamique, une section discographie complète retraçant toute la carrière de l'artiste, ainsi qu'un générateur de pochettes d'album interactif permettant de créer des designs personnalisés inspirés de l'esthétique OVO et du moodboard créé pour le projet.
-
 ![Moodboard](./public/moodboard.png)
 
 PARTYNEXTDOOR s'immisce dans l'univers digital à l'occasion de la sortie de son album **$ome $exy $ongs 4 U**, fusionnant l'esthétique nocturne et minimaliste de l'OVO avec des éléments génératifs et interactifs.
