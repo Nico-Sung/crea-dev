@@ -23,7 +23,6 @@ export default function CoverGenerator() {
         globalBlur,
         blendMode,
         fontClass,
-        userImage,
         toastMessage,
         setActiveTab,
         setParams,
@@ -35,7 +34,6 @@ export default function CoverGenerator() {
         setBlendMode,
         setFontClass,
         randomize,
-        handleImageUpload,
         downloadCover,
         regenerateLines,
     } = useCoverGenerator();
@@ -100,7 +98,6 @@ export default function CoverGenerator() {
                                 onFontClassChange={setFontClass}
                                 onNoiseOpacityChange={setNoiseOpacity}
                                 onGlobalBlurChange={setGlobalBlur}
-                                onImageUpload={handleImageUpload}
                             />
                         )}
                     </aside>
@@ -109,7 +106,6 @@ export default function CoverGenerator() {
                         captureRef={captureRef}
                         canvasRef={canvasRef}
                         globalBlur={globalBlur}
-                        userImage={userImage}
                         imageOpacity={imageOpacity}
                         blendMode={blendMode}
                         noiseOpacity={noiseOpacity}

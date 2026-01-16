@@ -4,7 +4,6 @@ interface PreviewProps {
     captureRef: React.RefObject<HTMLDivElement | null>;
     canvasRef: React.RefObject<HTMLCanvasElement | null>;
     globalBlur: number;
-    userImage: string | null;
     imageOpacity: number;
     blendMode: BlendModeKey;
     noiseOpacity: number;
@@ -17,7 +16,6 @@ export const Preview = ({
     captureRef,
     canvasRef,
     globalBlur,
-    userImage,
     imageOpacity,
     blendMode,
     noiseOpacity,
@@ -43,18 +41,16 @@ export const Preview = ({
                     }}
                 />
 
-                {userImage && (
-                    <img
-                        src={userImage}
-                        alt=""
-                        className="absolute inset-0 w-full h-full object-cover transition-all duration-300 grayscale"
-                        style={{
-                            opacity: imageOpacity / 100,
-                            filter: `blur(${globalBlur}px) grayscale(100%) contrast(120%) brightness(75%)`,
-                            mixBlendMode: blendMode,
-                        }}
-                    />
-                )}
+                <img
+                    src="/album4.png"
+                    alt="Some Sexy Songs 4 U"
+                    className="absolute inset-0 w-full h-full object-cover transition-all duration-300 grayscale"
+                    style={{
+                        opacity: imageOpacity / 100,
+                        filter: `blur(${globalBlur}px) grayscale(100%) contrast(120%) brightness(75%)`,
+                        mixBlendMode: blendMode,
+                    }}
+                />
 
                 <div
                     className="absolute inset-0 pointer-events-none z-20 mix-blend-overlay transition-opacity"

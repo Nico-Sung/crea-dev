@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { BlendModeKey, FontKey } from "../../types/coverGenerator";
 import { BLEND_MODES } from "../../constants/coverGenerator";
 
@@ -14,7 +15,6 @@ interface ContentTabProps {
     onFontClassChange: (font: FontKey) => void;
     onNoiseOpacityChange: (opacity: number) => void;
     onGlobalBlurChange: (blur: number) => void;
-    onImageUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const ContentTab = ({
@@ -30,7 +30,6 @@ export const ContentTab = ({
     onFontClassChange,
     onNoiseOpacityChange,
     onGlobalBlurChange,
-    onImageUpload,
 }: ContentTabProps) => {
     return (
         <div className="space-y-6">
@@ -56,21 +55,26 @@ export const ContentTab = ({
 
             <div>
                 <label className="block font-space-mono text-xs uppercase tracking-wider mb-3 text-[var(--text-muted)]">
-                    Image de fond
+                    Dernier Album
                 </label>
-                <input
-                    type="file"
-                    id="imageUpload"
-                    accept="image/*"
-                    className="hidden"
-                    onChange={onImageUpload}
-                />
-                <label
-                    htmlFor="imageUpload"
-                    className="flex items-center justify-center w-full py-4 border border-dashed border-white/20 hover:border-white/50 cursor-pointer transition-colors bg-[var(--accent-haze)]/30 font-space-mono text-xs tracking-widest text-[var(--text-muted)] hover:text-white"
-                >
-                    UPLOAD IMAGE
-                </label>
+                <div className="flex items-center gap-4 p-3 border border-white/10 bg-[var(--accent-haze)]/30">
+                    <div className="relative w-16 h-16 shrink-0">
+                        <Image
+                            src="/album4.png"
+                            alt="Some Sexy Songs 4 U"
+                            fill
+                            className="object-cover"
+                        />
+                    </div>
+                    <div className="flex flex-col">
+                        <span className="font-space-mono text-xs text-white uppercase tracking-wider">
+                            Some Sexy Songs 4 U
+                        </span>
+                        <span className="font-dm text-[10px] text-[var(--text-muted)]">
+                            2024
+                        </span>
+                    </div>
+                </div>
             </div>
 
             <div className="space-y-4 pt-4 border-t border-white/10">
