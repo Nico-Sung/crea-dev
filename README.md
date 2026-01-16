@@ -1,6 +1,6 @@
 # PARTYNEXTDOOR—Expérience immersive & Cover Generator
 
-Site vitrine pour le nouvel album 2024 de PARTYNEXTDOOR, construit avec Next.js (App Router). On y retrouve une landing cinématique dédiée au projet, une section discographie retraçant l’ensemble de sa carrière et un générateur permettant de créer sa propre pochette inspirée de l’esthétique OVO.
+Site vitrine pour le nouvel album 2024 de PARTYNEXTDOOR, construit avec Next.js (App Router). On y retrouve une landing dédiée au projet, une section discographie retraçant l’ensemble de sa carrière et un générateur de cover d'album permettant de créer sa propre pochette inspirée de l’esthétique OVO.
 
 ## Prérequis
 - Node.js ≥ 18
