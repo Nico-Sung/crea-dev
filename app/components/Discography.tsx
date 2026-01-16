@@ -20,7 +20,7 @@ export default function Discography() {
         const sections =
             yearSectionsRef.current.querySelectorAll(".year-section");
 
-        sections.forEach((section) => {
+        sections.forEach((section, index) => {
             const sectionElement = section as HTMLElement;
             const dateElement = sectionElement.querySelector(
                 ".date-container"
@@ -31,15 +31,20 @@ export default function Discography() {
             const lineFill = sectionElement.querySelector(
                 ".line-fill"
             ) as HTMLElement;
+            const isLastSection = index === sections.length - 1;
 
             if (dateElement && contentElement) {
                 ScrollTrigger.create({
                     trigger: sectionElement,
                     start: "top center",
-                    end: () =>
-                        `+=${
+                    end: () => {
+                        if (isLastSection) {
+                            return `bottom bottom`;
+                        }
+                        return `+=${
                             contentElement.offsetHeight - window.innerHeight / 4
-                        }`,
+                        }`;
+                    },
                     pin: dateElement,
                     pinSpacing: false,
                     markers: false,

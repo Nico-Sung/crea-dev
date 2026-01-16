@@ -17,9 +17,6 @@ importers:
       next:
         specifier: 16.1.1
         version: 16.1.1(@babel/core@7.28.6)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
-      noisejs:
-        specifier: ^2.0.0
-        version: 2.1.0
       react:
         specifier: 19.2.3
         version: 19.2.3
@@ -1546,9 +1543,6 @@ packages:
 
   node-releases@2.0.27:
     resolution: {integrity: sha512-nmh3lCkYZ3grZvqcCH+fjmQ7X+H0OeZgP40OierEaAptX4XofMh5kwNbWh7lBduUzCcV/8kZ+NDLCwm2iorIlA==}
-
-  noisejs@2.1.0:
-    resolution: {integrity: sha512-sw39KaUS2YBta6apZ0/H+nnCsUyxT/ZRxgv/HnDxx6pWO2e2nUmWgLhpOaQdlxxkFepIpxDrlXy3fHVx0S3SLg==}
 
   object-assign@4.1.1:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
@@ -3535,8 +3529,6 @@ snapshots:
       - babel-plugin-macros
 
   node-releases@2.0.27: {}
-
-  noisejs@2.1.0: {}
 
   object-assign@4.1.1: {}
 
