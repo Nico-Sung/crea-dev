@@ -20,7 +20,7 @@ export default function RootLayout({
                 <LoadingProvider>
                     <LoadingScreen />
                     <NoiseOverlay opacity={0.015} />
-                {children}
+                    {children}
                 </LoadingProvider>
             </body>
         </html>
