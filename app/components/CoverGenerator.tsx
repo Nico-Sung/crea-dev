@@ -23,7 +23,6 @@ export default function CoverGenerator() {
         globalBlur,
         blendMode,
         fontClass,
-        showAdvisory,
         userImage,
         toastMessage,
         setActiveTab,
@@ -35,7 +34,6 @@ export default function CoverGenerator() {
         setGlobalBlur,
         setBlendMode,
         setFontClass,
-        setShowAdvisory,
         randomize,
         handleImageUpload,
         downloadCover,
@@ -94,14 +92,12 @@ export default function CoverGenerator() {
                                 albumTitle={albumTitle}
                                 blendMode={blendMode}
                                 fontClass={fontClass}
-                                showAdvisory={showAdvisory}
                                 noiseOpacity={noiseOpacity}
                                 globalBlur={globalBlur}
                                 onArtistNameChange={setArtistName}
                                 onAlbumTitleChange={setAlbumTitle}
                                 onBlendModeChange={setBlendMode}
                                 onFontClassChange={setFontClass}
-                                onShowAdvisoryChange={setShowAdvisory}
                                 onNoiseOpacityChange={setNoiseOpacity}
                                 onGlobalBlurChange={setGlobalBlur}
                                 onImageUpload={handleImageUpload}
@@ -120,7 +116,6 @@ export default function CoverGenerator() {
                         fontClass={fontClass}
                         artistName={artistName}
                         albumTitle={albumTitle}
-                        showAdvisory={showAdvisory}
                     />
                 </div>
             </div>

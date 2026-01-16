@@ -11,7 +11,6 @@ interface PreviewProps {
     fontClass: FontKey;
     artistName: string;
     albumTitle: string;
-    showAdvisory: boolean;
 }
 
 export const Preview = ({
@@ -25,7 +24,6 @@ export const Preview = ({
     fontClass,
     artistName,
     albumTitle,
-    showAdvisory,
 }: PreviewProps) => {
     return (
         <div className="flex-1 flex flex-col items-center justify-center">
@@ -81,16 +79,6 @@ export const Preview = ({
                         {albumTitle || "LIQUID"}
                     </h1>
                 </div>
-
-                {showAdvisory && (
-                    <div className="absolute bottom-4 right-4 w-[12%] z-40 opacity-90 mix-blend-screen contrast-150">
-                        <img
-                            src="https://upload.wikimedia.org/wikipedia/commons/3/33/Parental_Advisory_Label_-_Black_Background.svg"
-                            alt="Parental Advisory"
-                            className="w-full"
-                        />
-                    </div>
-                )}
             </div>
         </div>
     );

@@ -6,14 +6,12 @@ interface ContentTabProps {
     albumTitle: string;
     blendMode: BlendModeKey;
     fontClass: FontKey;
-    showAdvisory: boolean;
     noiseOpacity: number;
     globalBlur: number;
     onArtistNameChange: (name: string) => void;
     onAlbumTitleChange: (title: string) => void;
     onBlendModeChange: (mode: BlendModeKey) => void;
     onFontClassChange: (font: FontKey) => void;
-    onShowAdvisoryChange: (show: boolean) => void;
     onNoiseOpacityChange: (opacity: number) => void;
     onGlobalBlurChange: (blur: number) => void;
     onImageUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -24,14 +22,12 @@ export const ContentTab = ({
     albumTitle,
     blendMode,
     fontClass,
-    showAdvisory,
     noiseOpacity,
     globalBlur,
     onArtistNameChange,
     onAlbumTitleChange,
     onBlendModeChange,
     onFontClassChange,
-    onShowAdvisoryChange,
     onNoiseOpacityChange,
     onGlobalBlurChange,
     onImageUpload,
@@ -125,26 +121,6 @@ export const ContentTab = ({
                         currentFont={fontClass}
                         onClick={onFontClassChange}
                     />
-                </div>
-
-                <div className="flex items-center justify-between pt-2">
-                    <label className="font-space-mono text-xs uppercase tracking-wider text-[var(--text-muted)]">
-                        Parental Advisory
-                    </label>
-                    <button
-                        onClick={() => onShowAdvisoryChange(!showAdvisory)}
-                        className={`w-10 h-5 rounded-full relative transition-colors ${
-                            showAdvisory ? "bg-white" : "bg-white/20"
-                        }`}
-                    >
-                        <div
-                            className={`w-3 h-3 rounded-full absolute top-1 transition-all ${
-                                showAdvisory
-                                    ? "left-6 bg-[var(--bg-deep)]"
-                                    : "left-1 bg-white"
-                            }`}
-                        />
-                    </button>
                 </div>
             </div>
 

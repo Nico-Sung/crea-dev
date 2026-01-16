@@ -34,7 +34,6 @@ export interface UseCoverGeneratorReturn {
     globalBlur: number;
     blendMode: BlendModeKey;
     fontClass: FontKey;
-    showAdvisory: boolean;
     userImage: string | null;
     toastMessage: string | null;
     setActiveTab: (tab: TabType) => void;
@@ -46,7 +45,6 @@ export interface UseCoverGeneratorReturn {
     setGlobalBlur: (blur: number) => void;
     setBlendMode: (mode: BlendModeKey) => void;
     setFontClass: (font: FontKey) => void;
-    setShowAdvisory: (show: boolean) => void;
     setUserImage: (image: string | null) => void;
     randomize: () => void;
     handleImageUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -70,7 +68,6 @@ export const useCoverGenerator = (): UseCoverGeneratorReturn => {
     const [globalBlur, setGlobalBlur] = useState(0);
     const [blendMode, setBlendMode] = useState<BlendModeKey>("lighten");
     const [fontClass, setFontClass] = useState<FontKey>("font-montserrat");
-    const [showAdvisory, setShowAdvisory] = useState(false);
     const [userImage, setUserImage] = useState<string | null>(null);
     const [toastMessage, setToastMessage] = useState<string | null>(null);
 
@@ -257,27 +254,6 @@ export const useCoverGenerator = (): UseCoverGeneratorReturn => {
 
             ctx.globalCompositeOperation = "source-over";
 
-            if (showAdvisory) {
-                const advisoryImg = new Image();
-                advisoryImg.crossOrigin = "anonymous";
-                await new Promise<void>((resolve) => {
-                    advisoryImg.onload = () => resolve();
-                    advisoryImg.onerror = () => resolve();
-                    advisoryImg.src =
-                        "https://upload.wikimedia.org/wikipedia/commons/3/33/Parental_Advisory_Label_-_Black_Background.svg";
-                });
-                const advisorySize = size * 0.12;
-                ctx.globalCompositeOperation = "screen";
-                ctx.globalAlpha = 0.9;
-                ctx.drawImage(
-                    advisoryImg,
-                    size - advisorySize - size * 0.04,
-                    size - advisorySize - size * 0.04,
-                    advisorySize,
-                    advisorySize * 0.6
-                );
-            }
-
             const link = document.createElement("a");
             link.download = `${albumTitle || "PND_ART"}_GenerativeCover.png`;
             link.href = finalCanvas.toDataURL("image/png", 1.0);
@@ -299,7 +275,6 @@ export const useCoverGenerator = (): UseCoverGeneratorReturn => {
         fontClass,
         artistName,
         albumTitle,
-        showAdvisory,
     ]);
 
     return {
@@ -314,7 +289,6 @@ export const useCoverGenerator = (): UseCoverGeneratorReturn => {
         globalBlur,
         blendMode,
         fontClass,
-        showAdvisory,
         userImage,
         toastMessage,
         setActiveTab,
@@ -326,7 +300,6 @@ export const useCoverGenerator = (): UseCoverGeneratorReturn => {
         setGlobalBlur,
         setBlendMode,
         setFontClass,
-        setShowAdvisory,
         setUserImage,
         randomize,
         handleImageUpload,
