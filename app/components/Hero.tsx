@@ -1,51 +1,31 @@
 "use client";
 
-import { gsap } from "gsap";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLoading } from "../context/LoadingContext";
 
 export default function Hero() {
-    const textRef = useRef<HTMLHeadingElement>(null);
     const { isLoaded } = useLoading();
+    const [textReady, setTextReady] = useState(false);
+    const [letterSpacing, setLetterSpacing] = useState(0);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
-        if (!isLoaded || !textRef.current) return;
-
-        gsap.fromTo(
-            textRef.current,
-            {
-                opacity: 0,
-                y: 50,
-            },
-            {
-                opacity: 1,
-                y: 0,
-                duration: 1,
-                ease: "power3.out",
-                delay: 0.2,
-            }
-        );
+        if (!isLoaded) return;
+        window.scrollTo(0, 0);
+        const timeout = setTimeout(() => setTextReady(true), 450);
+        return () => clearTimeout(timeout);
     }, [isLoaded]);
 
     useEffect(() => {
-        if (!isLoaded || !textRef.current) return;
+        if (!isLoaded) return;
 
         const handleScroll = () => {
-            if (!textRef.current) return;
-            const maxSpacing = 1;
             const progress = Math.min(
                 window.scrollY / window.innerHeight,
                 1
             );
-            const targetSpacing = progress * maxSpacing;
-
-            gsap.to(textRef.current, {
-                letterSpacing: `${targetSpacing}em`,
-                duration: 0.4,
-                ease: "power2.out",
-                overwrite: "auto",
-            });
+            setLetterSpacing(progress * 0.8);
         };
 
         handleScroll();
@@ -54,21 +34,88 @@ export default function Hero() {
     }, [isLoaded]);
 
     useEffect(() => {
-        if (!isLoaded) return;
-        window.scrollTo(0, 0);
+        if (!isLoaded || !canvasRef.current) return;
+
+        const canvas = canvasRef.current;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return;
+
+        let animationFrameId: number;
+        const flakeCount = 200;
+        let flakes: Array<{
+            x: number;
+            y: number;
+            radius: number;
+            speedY: number;
+            drift: number;
+        }> = [];
+
+        const initFlakes = () => {
+            flakes = Array.from({ length: flakeCount }, () => ({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.6 + 0.4,
+                speedY: Math.random() * 0.9 + 0.3,
+                drift: Math.random() * 0.6 - 0.3,
+            }));
+        };
+
+        const resize = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initFlakes();
+        };
+
+        resize();
+        window.addEventListener("resize", resize);
+
+        const render = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            flakes.forEach((flake) => {
+                flake.y += flake.speedY;
+                flake.x += flake.drift + Math.sin(flake.y * 0.01) * 0.4;
+
+                if (flake.y > canvas.height) {
+                    flake.y = -flake.radius;
+                    flake.x = Math.random() * canvas.width;
+                }
+
+                if (flake.x > canvas.width) flake.x = 0;
+                if (flake.x < 0) flake.x = canvas.width;
+
+                ctx.beginPath();
+                ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+                ctx.fillStyle = "rgba(255,255,255,0.85)";
+                ctx.fill();
+            });
+
+            animationFrameId = requestAnimationFrame(render);
+        };
+
+        animationFrameId = requestAnimationFrame(render);
+
+        return () => {
+            cancelAnimationFrame(animationFrameId);
+            window.removeEventListener("resize", resize);
+        };
     }, [isLoaded]);
 
     return (
         <section className="fixed inset-0 w-screen h-screen overflow-hidden bg-black z-10">
             <div className="absolute inset-0 w-full h-full">
                 <Image
-                    src="/hero.png"
+                    src="/heroo.png"
                     alt="PARTYNEXTDOOR landing background"
                     fill
                     className="object-cover"
                     priority
                 />
                 <div className="absolute inset-0 bg-black/40" />
+                <canvas
+                    ref={canvasRef}
+                    className="absolute inset-0 w-full h-full mix-blend-screen opacity-70"
+                />
             </div>
 
             <div className="absolute top-0 left-0 z-20 p-4 md:p-6">
@@ -113,9 +160,12 @@ export default function Hero() {
 
             <div className="relative z-10 flex items-center justify-center w-full h-full px-6 text-center">
                 <h1
-                    ref={textRef}
-                    className="font-rubik-mono font-black text-5xl md:text-7xl lg:text-9xl xl:text-[9rem] tracking-[0em] uppercase text-[#c61a1a] drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)]"
-                    style={{ opacity: 0, letterSpacing: "0em" }}
+                    className={`font-rubik-mono font-black text-5xl md:text-7xl lg:text-9xl xl:text-[9rem] uppercase text-[#c61a1a] drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] transition-all duration-[1200ms] ease-out ${
+                        textReady
+                            ? "opacity-100 translate-y-0"
+                            : "opacity-0 translate-y-10"
+                    }`}
+                    style={{ letterSpacing: `${letterSpacing}em` }}
                 >
                     PARTYNEXTDOOR
                 </h1>
