@@ -7,7 +7,6 @@ import { useLoading } from "../context/LoadingContext";
 export default function Hero() {
     const { isLoaded } = useLoading();
     const [textReady, setTextReady] = useState(false);
-    const [letterSpacing, setLetterSpacing] = useState(0);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const scrollAnimationRef = useRef<number | null>(null);
 
@@ -63,22 +62,6 @@ export default function Hero() {
         window.scrollTo(0, 0);
         const timeout = setTimeout(() => setTextReady(true), 450);
         return () => clearTimeout(timeout);
-    }, [isLoaded]);
-
-    useEffect(() => {
-        if (!isLoaded) return;
-
-        const handleScroll = () => {
-            const progress = Math.min(
-                window.scrollY / window.innerHeight,
-                1
-            );
-            setLetterSpacing(progress * 0.8);
-        };
-
-        handleScroll();
-        window.addEventListener("scroll", handleScroll, { passive: true });
-        return () => window.removeEventListener("scroll", handleScroll);
     }, [isLoaded]);
 
     useEffect(() => {
@@ -206,12 +189,15 @@ export default function Hero() {
 
             <div className="relative z-10 flex items-center justify-center w-full h-full px-6 text-center">
                 <h1
-                    className={`font-rubik-mono font-black text-5xl md:text-7xl lg:text-9xl xl:text-[9rem] uppercase text-[#c61a1a] drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] transition-all duration-[1200ms] ease-out ${
+                    className={`font-rubik-mono font-black text-3xl md:text-5xl lg:text-7xl xl:text-8xl uppercase text-[#c61a1a] drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] ${
                         textReady
                             ? "opacity-100 translate-y-0"
                             : "opacity-0 translate-y-10"
                     }`}
-                    style={{ letterSpacing: `${letterSpacing}em` }}
+                    style={{
+                        transition:
+                            "opacity 1.2s ease-out, transform 1.2s ease-out",
+                    }}
                 >
                     PARTYNEXTDOOR
                 </h1>
