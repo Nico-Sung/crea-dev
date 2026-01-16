@@ -1,7 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { type MouseEvent, useEffect, useRef, useState } from "react";
+import {
+    type CSSProperties,
+    type MouseEvent,
+    useEffect,
+    useRef,
+    useState,
+} from "react";
 import { useLoading } from "../context/LoadingContext";
 
 export default function Hero() {
@@ -147,6 +153,21 @@ export default function Hero() {
                     ref={canvasRef}
                     className="absolute inset-0 w-full h-full mix-blend-screen opacity-70"
                 />
+            </div>
+
+            <div className="interactive z-20">
+                <div
+                    className="sticker"
+                    style={{ "--r": "-5deg" } as CSSProperties}
+                >
+                    NOUVEL ALBUM !!
+                </div>
+                <div
+                    className="marker-text mt-4 md:mt-5"
+                    style={{ transform: "rotate(-5deg)" }}
+                >
+                    2024-10-31
+                </div>
             </div>
 
             <div className="absolute top-0 left-0 z-20 p-4 md:p-6">
