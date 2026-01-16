@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;400;500&family=Michroma&family=Rubik+Mono+One&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;400;500&family=Rubik+Mono+One&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800&family=Montserrat:wght@300;400;700;900&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap");
 
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 @import "tailwindcss";
 
 :root {
@@ -9,6 +10,7 @@
     --text-muted: #888888;
     --accent-purple: #6b4cff;
     --accent-haze: #2a2a2a;
+    --pnd-red: #c61a1a;
 }
 
 body {
@@ -317,4 +319,41 @@ h6 {
         transform: translateY(-6px);
         opacity: 1;
     }
+}
+
+.interactive {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.25rem;
+    pointer-events: none;
+}
+
+@media (min-width: 768px) {
+    .interactive {
+        bottom: 2.5rem;
+        left: 2.5rem;
+    }
+}
+
+.sticker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #ffffff;
+    color: #000000;
+    padding: 5px 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    box-shadow: 3px 3px 0 var(--pnd-red);
+    transform: rotate(var(--r, -5deg));
+}
+
+.marker-text {
+    font-family: "Permanent Marker", cursive;
+    color: var(--pnd-red);
+    font-size: 2rem;
+    pointer-events: none;
+    margin-top: 0;
 }
