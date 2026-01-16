@@ -1,12 +1,16 @@
 # PARTYNEXTDOOR—Expérience immersive & Cover Generator
 
-Site vitrine pour le nouvel album 2024 de PARTYNEXTDOOR, construit avec Next.js (App Router). On y retrouve une landing dédiée au projet, une section discographie retraçant l’ensemble de sa carrière et un générateur de cover d'album permettant de créer sa propre pochette inspirée de l’esthétique OVO.
+Site web immersif dédié au nouvel album 2024 de PARTYNEXTDOOR, développé avec Next.js (App Router). Le site propose une landing page dynamique, une section discographie complète retraçant toute la carrière de l'artiste, ainsi qu'un générateur de pochettes d'album interactif permettant de créer des designs personnalisés inspirés de l'esthétique OVO et du moodboard créé pour le projet.
+
+![Moodboard](./public/moodboard.png)
 
 ## Prérequis
-- Node.js ≥ 18
-- pnpm (recommandé). Adaptez les commandes si vous préférez npm, yarn ou bun.
+
+-   Node.js ≥ 18
+-   pnpm (recommandé). Adaptez les commandes si vous préférez npm, yarn ou bun.
 
 ## Installation & développement
+
 ```bash
 # Installer les dépendances
 pnpm install
@@ -14,10 +18,12 @@ pnpm install
 # Lancer le serveur de dev
 pnpm dev
 ```
+
 Rendez-vous sur [http://localhost:3000](http://localhost:3000) pour voir le site. La page principale est rendue depuis `app/page.tsx` et hot-reload automatiquement.
 
 ## Scripts utiles
-| Commande      | Description                               |
-| ------------- | ----------------------------------------- |
-| `pnpm dev`    | Serveur Next.js en mode développement     |
-| `pnpm build`  | Build production (Next.js + TypeScript)   |
+
+| Commande     | Description                             |
+| ------------ | --------------------------------------- |
+| `pnpm dev`   | Serveur Next.js en mode développement   |
+| `pnpm build` | Build production (Next.js + TypeScript) |

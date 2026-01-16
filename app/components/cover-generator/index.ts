@@ -1,4 +1,3 @@
-// Export all cover generator components
 export { ControlHeader } from "./ControlHeader";
 export { TabNavigation } from "./TabNavigation";
 export { GenerativeTab } from "./GenerativeTab";
