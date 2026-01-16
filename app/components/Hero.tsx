@@ -155,12 +155,17 @@ export default function Hero() {
                 />
             </div>
 
-            <div className="interactive z-20">
+            <a
+                href="https://ovo-partynextdoor.ffm.to/4u"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="interactive z-30 cursor-pointer hover:scale-105 transition-transform block"
+            >
                 <div
                     className="sticker"
                     style={{ "--r": "-5deg" } as CSSProperties}
                 >
-                    NOUVEL ALBUM !!
+                    $ome $exy $ongs 4 U
                 </div>
                 <div
                     className="marker-text mt-4 md:mt-5"
@@ -168,7 +173,7 @@ export default function Hero() {
                 >
                     2024-10-31
                 </div>
-            </div>
+            </a>
 
             <div className="absolute top-0 left-0 z-20 p-4 md:p-6">
                 <Image
