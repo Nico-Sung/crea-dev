@@ -3,13 +3,17 @@
 import { gsap } from "gsap";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
+import { useLoading } from "../context/LoadingContext";
 
 export default function Hero() {
     const boxRef = useRef<HTMLDivElement>(null);
     const textRef = useRef<HTMLHeadingElement>(null);
+    const { isLoaded } = useLoading();
 
     useEffect(() => {
-        const timeline = gsap.timeline({ delay: 0.3 });
+        if (!isLoaded) return;
+
+        const timeline = gsap.timeline({ delay: 0.2 });
 
         if (boxRef.current && textRef.current) {
             timeline
@@ -48,7 +52,7 @@ export default function Hero() {
                     "-=0.3"
                 );
         }
-    }, []);
+    }, [isLoaded]);
 
     return (
         <section className="fixed inset-0 w-screen h-screen bg-[#1a1a1a] flex items-center justify-center overflow-hidden z-10">
@@ -104,7 +108,11 @@ export default function Hero() {
             </nav>
 
             <div className="relative z-10 flex items-center justify-center w-full">
-                <div ref={boxRef} className="relative origin-center">
+                <div
+                    ref={boxRef}
+                    className="relative origin-center"
+                    style={{ transform: "scaleX(0) scaleY(0.1)" }}
+                >
                     <div
                         className="relative"
                         style={{
@@ -119,6 +127,7 @@ export default function Hero() {
                                 WebkitBackgroundClip: "text",
                                 backgroundClip: "text",
                                 color: "transparent",
+                                opacity: 0,
                             }}
                         >
                             PARTYNEXTDOOR

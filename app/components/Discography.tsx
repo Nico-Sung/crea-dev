@@ -38,7 +38,7 @@ export default function Discography() {
                     start: "top center",
                     end: () =>
                         `+=${
-                            contentElement.offsetHeight - window.innerHeight / 2
+                            contentElement.offsetHeight - window.innerHeight / 4
                         }`,
                     pin: dateElement,
                     pinSpacing: false,
@@ -117,7 +117,7 @@ export default function Discography() {
             style={{ marginTop: "100vh" }}
         >
             <div
-                className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-20"
+                className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-10"
                 style={{
                     backgroundImage: "url('/bg-disco2.png')",
                     backgroundSize: "cover",

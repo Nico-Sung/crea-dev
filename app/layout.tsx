@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import NoiseOverlay from "./components/NoiseOverlay";
+import LoadingScreen from "./components/LoadingScreen";
+import { LoadingProvider } from "./context/LoadingContext";
 
 export const metadata: Metadata = {
     title: "PARTYNEXTDOOR - Album Cover Generator",
@@ -14,8 +17,11 @@ export default function RootLayout({
     return (
         <html lang="fr">
             <body>
-                <div className="noise-overlay" />
-                {children}
+                <LoadingProvider>
+                    <LoadingScreen />
+                    <NoiseOverlay opacity={0.015} />
+                    {children}
+                </LoadingProvider>
             </body>
         </html>
     );
