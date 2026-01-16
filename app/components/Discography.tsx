@@ -133,8 +133,8 @@ export default function Discography() {
             />
 
             <div className="relative z-10 container mx-auto px-6 md:px-12 lg:px-16 py-20 md:py-32">
-                <h2 className="font-syne text-2xl md:text-3xl text-white tracking-tighter mb-12 md:mb-16 text-center">
-                    DISCOGRAPHY
+                <h2 className="font-navcaps text-xl md:text-2xl text-white mb-12 md:mb-16 text-center tracking-[0.3em]">
+                    Discography
                 </h2>
 
                 <div ref={yearSectionsRef}>
@@ -174,7 +174,7 @@ export default function Discography() {
                                             key={album.id}
                                             className="content-item mb-8"
                                         >
-                                            <h3 className="font-syne text-lg md:text-xl lg:text-2xl text-white/90 tracking-tight mb-3">
+                                            <h3 className="font-navcaps text-base md:text-lg lg:text-xl text-white/90 mb-3 tracking-[0.25em]">
                                                 {album.title}
                                             </h3>
                                             <p className="font-dm text-xs md:text-sm text-[var(--text-muted)] leading-relaxed mb-6 max-w-xl">
